@@ -1,1 +1,711 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#172554">
+<title>META ENEM | Seu futuro começa agora!</title>
+
+<style>
+:root {
+  --azul: #172554;
+  --azul2: #2563eb;
+  --roxo: #7c3aed;
+  --fundo: #f1f5f9;
+  --branco: #ffffff;
+  --verde: #15803d;
+  --vermelho: #dc2626;
+  --texto: #1e293b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+  line-height: 1.5;
+}
+
+header {
+  background: linear-gradient(135deg, var(--azul), var(--roxo));
+  color: white;
+  padding: 28px 18px;
+  text-align: center;
+  border-radius: 0 0 25px 25px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  margin: 5px 0 0;
+}
+
+main {
+  width: 100%;
+  max-width: 650px;
+  margin: auto;
+  padding: 16px;
+}
+
+.card {
+  background: white;
+  padding: 18px;
+  border-radius: 16px;
+  margin-bottom: 17px;
+  box-shadow: 0 3px 12px #0000000d;
+}
+
+h2 {
+  color: var(--azul);
+  margin-top: 0;
+  font-size: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin: 12px 0 5px;
+}
+
+input, select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 16px;
+  background: white;
+  color: var(--texto);
+}
+
+button {
+  border: none;
+  padding: 13px 16px;
+  border-radius: 10px;
+  background: var(--azul2);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  min-height: 46px;
+}
+
+button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 2px;
+}
+
+button:active {
+  opacity: .8;
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.dica {
+  background: #eff6ff;
+  border-left: 5px solid var(--azul2);
+  padding: 13px;
+  border-radius: 8px;
+}
+
+.numeros {
+  display: flex;
+  gap: 10px;
+}
+
+.numero {
+  flex: 1;
+  background: #eff6ff;
+  border-radius: 12px;
+  text-align: center;
+  padding: 12px 5px;
+}
+
+.numero strong {
+  display: block;
+  font-size: 27px;
+  color: var(--azul2);
+}
+
+.tarefa {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 13px;
+  margin-top: 10px;
+  overflow-wrap: anywhere;
+}
+
+.tarefa.concluida {
+  background: #f0fdf4;
+  opacity: .8;
+}
+
+.tarefa.concluida .descricao {
+  text-decoration: line-through;
+}
+
+.acoes {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.acoes button {
+  flex: 1;
+}
+
+.excluir {
+  background: var(--vermelho);
+}
+
+.concluir {
+  background: var(--verde);
+}
+
+.alternativa {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin: 8px 0;
+  background: #eff6ff;
+  color: var(--texto);
+  border: 2px solid transparent;
+}
+
+.alternativa.selecionada {
+  border-color: var(--azul2);
+  background: #dbeafe;
+}
+
+.alternativa.certa {
+  background: #dcfce7;
+  border-color: var(--verde);
+}
+
+.alternativa.errada {
+  background: #fee2e2;
+  border-color: var(--vermelho);
+}
+
+.feedback {
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 10px;
+  background: #f1f5f9;
+}
+
+.barra {
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.progresso {
+  height: 100%;
+  width: 0%;
+  background: var(--verde);
+  transition: width .3s;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.pequeno {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.oculto {
+  display: none;
+}
+
+@media (max-width: 380px) {
+  .numeros {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🚀 META ENEM</h1>
+  <p>Seu futuro começa agora!</p>
+  <p>Organize seus estudos e conquiste seus objetivos.</p>
+</header>
+
+<main>
+
+<section class="card">
+  <h2>🎓 Minha série</h2>
+
+  <label for="serie">Escolha seu ano escolar:</label>
+  <select id="serie">
+    <option value="1">1º ano do Ensino Médio</option>
+    <option value="2">2º ano do Ensino Médio</option>
+    <option value="3">3º ano do Ensino Médio</option>
+  </select>
+
+  <div class="dica" style="margin-top:15px">
+    <strong>💡 Dica de estudo:</strong>
+    <p id="dicaTexto" aria-live="polite"></p>
+  </div>
+</section>
+
+<section class="card">
+  <h2>📊 Meu desempenho</h2>
+
+  <div class="numeros">
+    <div class="numero">
+      <strong id="total">0</strong>
+      Total
+    </div>
+
+    <div class="numero">
+      <strong id="pendentes">0</strong>
+      Pendentes
+    </div>
+
+    <div class="numero">
+      <strong id="concluidas">0</strong>
+      Concluídas
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>📝 Minhas tarefas</h2>
+
+  <form id="formTarefa">
+    <label for="disciplina">Disciplina:</label>
+    <select id="disciplina" required>
+      <option value="">Selecione</option>
+      <option>Português</option>
+      <option>Matemática</option>
+      <option>História</option>
+      <option>Geografia</option>
+      <option>Biologia</option>
+      <option>Física</option>
+      <option>Química</option>
+      <option>Inglês</option>
+      <option>Filosofia</option>
+      <option>Sociologia</option>
+      <option>Redação</option>
+      <option>Outra</option>
+    </select>
+
+    <label for="descricao">Descrição da tarefa:</label>
+    <input id="descricao" type="text"
+      placeholder="Ex: Estudar equações"
+      maxlength="150" required>
+
+    <label for="data">Data de entrega:</label>
+    <input id="data" type="date" required>
+
+    <button type="submit" style="width:100%;margin-top:15px">
+      + Adicionar tarefa
+    </button>
+  </form>
+
+  <div id="listaTarefas" aria-live="polite"></div>
+</section>
+
+<section class="card">
+  <h2>🧠 Miniquiz do Ensino Médio</h2>
+  <p>Responda às seis questões e teste seus conhecimentos!</p>
+
+  <div class="barra">
+    <div class="progresso" id="barraProgresso"></div>
+  </div>
+
+  <p id="contadorQuestao" class="pequeno"></p>
+  <div id="areaQuiz"></div>
+  <div id="resultadoQuiz" aria-live="polite"></div>
+</section>
+
+</main>
+
+<footer>
+  META ENEM © 2026 — Seu futuro começa agora! 💙
+</footer>
+
+<script>
+const dicas = {
+  1: "Construa uma boa base! Revise os conteúdos vistos em sala, faça resumos e crie o hábito de estudar um pouco todos os dias.",
+  2: "Aprofunde seus conhecimentos! Resolva exercícios, revise os conteúdos anteriores e comece a praticar questões do ENEM.",
+  3: "É hora de intensificar a preparação! Faça simulados, pratique redação semanalmente e revise os assuntos em que tem mais dificuldade."
+};
+
+const serie = document.getElementById("serie");
+const dicaTexto = document.getElementById("dicaTexto");
+
+let tarefas = [];
+
+function salvar() {
+  try {
+    localStorage.setItem("metaEnemTarefas", JSON.stringify(tarefas));
+    localStorage.setItem("metaEnemSerie", serie.value);
+  } catch (erro) {
+    alert("Não foi possível salvar os dados neste navegador.");
+  }
+}
+
+function atualizarDica() {
+  dicaTexto.textContent = dicas[serie.value];
+  salvar();
+}
+
+serie.addEventListener("change", atualizarDica);
+
+function carregar() {
+  try {
+    const serieSalva = localStorage.getItem("metaEnemSerie");
+    const tarefasSalvas = localStorage.getItem("metaEnemTarefas");
+
+    if (["1", "2", "3"].includes(serieSalva)) {
+      serie.value = serieSalva;
+    }
+
+    const dados = tarefasSalvas ? JSON.parse(tarefasSalvas) : [];
+
+    if (Array.isArray(dados)) {
+      tarefas = dados.filter(t =>
+        t &&
+        typeof t.id === "string" &&
+        typeof t.disciplina === "string" &&
+        typeof t.descricao === "string" &&
+        typeof t.data === "string" &&
+        typeof t.concluida === "boolean"
+      );
+    }
+  } catch (erro) {
+    tarefas = [];
+  }
+
+  atualizarDica();
+  renderizarTarefas();
+}
+
+document.getElementById("formTarefa")
+.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const disciplina = document.getElementById("disciplina").value;
+  const descricao = document.getElementById("descricao").value.trim();
+  const data = document.getElementById("data").value;
+
+  if (!disciplina || !descricao || !data) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  tarefas.push({
+    id: Date.now().toString() + Math.random().toString(36).slice(2),
+    disciplina,
+    descricao,
+    data,
+    concluida: false
+  });
+
+  salvar();
+  renderizarTarefas();
+  this.reset();
+});
+
+function renderizarTarefas() {
+  const lista = document.getElementById("listaTarefas");
+  lista.replaceChildren();
+
+  const concluidas = tarefas.filter(t => t.concluida).length;
+  const pendentes = tarefas.length - concluidas;
+
+  document.getElementById("total").textContent = tarefas.length;
+  document.getElementById("pendentes").textContent = pendentes;
+  document.getElementById("concluidas").textContent = concluidas;
+
+  if (tarefas.length === 0) {
+    const vazio = document.createElement("p");
+    vazio.textContent = "Você ainda não cadastrou nenhuma tarefa.";
+    lista.appendChild(vazio);
+    return;
+  }
+
+  tarefas.forEach(tarefa => {
+    const card = document.createElement("div");
+    card.className = "tarefa" +
+      (tarefa.concluida ? " concluida" : "");
+
+    const titulo = document.createElement("strong");
+    titulo.textContent = tarefa.disciplina;
+
+    const descricao = document.createElement("p");
+    descricao.className = "descricao";
+    descricao.textContent = tarefa.descricao;
+
+    const data = document.createElement("p");
+    data.className = "pequeno";
+    data.textContent = "Entrega: " + tarefa.data.split("-").reverse().join("/");
+
+    const status = document.createElement("p");
+    status.textContent = tarefa.concluida
+      ? "✅ Concluída"
+      : "⏳ Pendente";
+
+    const acoes = document.createElement("div");
+    acoes.className = "acoes";
+
+    const botaoConcluir = document.createElement("button");
+    botaoConcluir.className = "concluir";
+    botaoConcluir.textContent = tarefa.concluida
+      ? "Desfazer"
+      : "Concluir";
+
+    botaoConcluir.setAttribute("aria-label",
+      tarefa.concluida
+        ? "Desfazer conclusão de " + tarefa.descricao
+        : "Concluir " + tarefa.descricao
+    );
+
+    botaoConcluir.addEventListener("click", () => {
+      tarefa.concluida = !tarefa.concluida;
+      salvar();
+      renderizarTarefas();
+    });
+
+    const botaoExcluir = document.createElement("button");
+    botaoExcluir.className = "excluir";
+    botaoExcluir.textContent = "Excluir";
+    botaoExcluir.setAttribute("aria-label",
+      "Excluir " + tarefa.descricao
+    );
+
+    botaoExcluir.addEventListener("click", () => {
+      if (confirm("Deseja realmente excluir esta tarefa?")) {
+        tarefas = tarefas.filter(t => t.id !== tarefa.id);
+        salvar();
+        renderizarTarefas();
+      }
+    });
+
+    acoes.append(botaoConcluir, botaoExcluir);
+    card.append(titulo, descricao, data, status, acoes);
+    lista.appendChild(card);
+  });
+}
+
+// MINIQUIZ
+
+const questoes = [
+  {
+    pergunta: "Qual é o resultado de 5²?",
+    alternativas: ["10", "15", "25", "30"],
+    correta: 2,
+    explicacao: "5² significa 5 × 5, que é igual a 25."
+  },
+  {
+    pergunta: "Qual é o principal gás absorvido pelas plantas na fotossíntese?",
+    alternativas: ["Oxigênio", "Gás carbônico", "Nitrogênio", "Hidrogênio"],
+    correta: 1,
+    explicacao: "As plantas absorvem gás carbônico e utilizam a luz para produzir seu alimento."
+  },
+  {
+    pergunta: "Quem proclamou a Independência do Brasil em 1822?",
+    alternativas: ["Dom Pedro I", "Dom João VI", "Tiradentes", "Getúlio Vargas"],
+    correta: 0,
+    explicacao: "Dom Pedro I proclamou a Independência do Brasil em 7 de setembro de 1822."
+  },
+  {
+    pergunta: "Qual é a fórmula química da água?",
+    alternativas: ["CO2", "O2", "H2O", "NaCl"],
+    correta: 2,
+    explicacao: "A água é formada por dois átomos de hidrogênio e um de oxigênio."
+  },
+  {
+    pergunta: "Qual figura de linguagem consiste em exagerar uma ideia?",
+    alternativas: ["Metáfora", "Hipérbole", "Ironia", "Antítese"],
+    correta: 1,
+    explicacao: "A hipérbole é o exagero intencional para dar mais intensidade à expressão."
+  },
+  {
+    pergunta: "Qual é a velocidade da luz no vácuo, aproximadamente?",
+    alternativas: [
+      "300 km/s",
+      "3.000 km/s",
+      "30.000 km/s",
+      "300.000 km/s"
+    ],
+    correta: 3,
+    explicacao: "A luz se propaga no vácuo a aproximadamente 300.000 km/s."
+  }
+];
+
+let indice = 0;
+let pontuacao = 0;
+let respostas = [];
+let respondida = false;
+
+const areaQuiz = document.getElementById("areaQuiz");
+const resultadoQuiz = document.getElementById("resultadoQuiz");
+
+function iniciarQuiz() {
+  indice = 0;
+  pontuacao = 0;
+  respostas = [];
+  resultadoQuiz.replaceChildren();
+  mostrarQuestao();
+}
+
+function mostrarQuestao() {
+  respondida = false;
+  areaQuiz.replaceChildren();
+
+  const questao = questoes[indice];
+
+  document.getElementById("contadorQuestao").textContent =
+    "Questão " + (indice + 1) + " de " + questoes.length;
+
+  document.getElementById("barraProgresso").style.width =
+    (indice / questoes.length * 100) + "%";
+
+  const pergunta = document.createElement("h3");
+  pergunta.textContent = questao.pergunta;
+  areaQuiz.appendChild(pergunta);
+
+  questao.alternativas.forEach((alternativa, i) => {
+    const botao = document.createElement("button");
+    botao.className = "alternativa";
+    botao.textContent = String.fromCharCode(65 + i) + ") " + alternativa;
+
+    botao.addEventListener("click", () => responder(i, botao));
+
+    areaQuiz.appendChild(botao);
+  });
+
+  const feedback = document.createElement("div");
+  feedback.id = "feedback";
+  feedback.className = "feedback oculto";
+  feedback.setAttribute("aria-live", "polite");
+  areaQuiz.appendChild(feedback);
+
+  const proximo = document.createElement("button");
+  proximo.id = "proximo";
+  proximo.textContent = indice === questoes.length - 1
+    ? "Ver resultado"
+    : "Próxima questão";
+
+  proximo.style.width = "100%";
+  proximo.style.marginTop = "12px";
+  proximo.disabled = true;
+
+  proximo.addEventListener("click", () => {
+    if (indice < questoes.length - 1) {
+      indice++;
+      mostrarQuestao();
+    } else {
+      finalizarQuiz();
+    }
+  });
+
+  areaQuiz.appendChild(proximo);
+}
+
+function responder(escolha, botaoEscolhido) {
+  if (respondida) return;
+
+  respondida = true;
+
+  const questao = questoes[indice];
+  const botoes = areaQuiz.querySelectorAll(".alternativa");
+
+  botoes.forEach((botao, i) => {
+    botao.disabled = true;
+
+    if (i === questao.correta) {
+      botao.classList.add("certa");
+    }
+  });
+
+  const acertou = escolha === questao.correta;
+
+  if (acertou) {
+    pontuacao++;
+  } else {
+    botaoEscolhido.classList.add("errada");
+  }
+
+  respostas.push(acertou);
+
+  const feedback = document.getElementById("feedback");
+  feedback.classList.remove("oculto");
+
+  feedback.textContent =
+    (acertou ? "✅ Você acertou! " : "❌ Você errou! ") +
+    questao.explicacao;
+
+  document.getElementById("proximo").disabled = false;
+}
+
+function finalizarQuiz() {
+  areaQuiz.replaceChildren();
+  document.getElementById("contadorQuestao").textContent =
+    "Quiz finalizado!";
+
+  document.getElementById("barraProgresso").style.width = "100%";
+
+  const titulo = document.createElement("h3");
+  titulo.textContent = "🎉 Resultado do seu quiz";
+
+  const placar = document.createElement("p");
+  placar.textContent = "Você acertou " + pontuacao +
+    " de " + questoes.length + " questões!";
+
+  const percentual = Math.round(
+    pontuacao / questoes.length * 100
+  );
+
+  const mensagem = document.createElement("p");
+  mensagem.textContent = percentual >= 80
+    ? "Excelente! Você está mandando muito bem!"
+    : percentual >= 50
+    ? "Muito bom! Continue estudando para melhorar."
+    : "Não desanime! Revise os conteúdos e tente novamente.";
+
+  const detalhes = document.createElement("p");
+  detalhes.textContent = "Acertos: " + pontuacao +
+    " | Erros: " + (questoes.length - pontuacao);
+
+  const reiniciar = document.createElement("button");
+  reiniciar.textContent = "Refazer quiz";
+  reiniciar.style.width = "100%";
+  reiniciar.addEventListener("click", iniciarQuiz);
+
+  resultadoQuiz.replaceChildren(
+    titulo, placar, detalhes, mensagem, reiniciar
+  );
+}
+
+carregar();
+iniciarQuiz();
+
+</script>
+
+</body>
+</html>
